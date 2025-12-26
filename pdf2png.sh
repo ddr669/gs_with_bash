@@ -14,7 +14,7 @@ __fuckedhelp__ (){
 	echo
 
 };
-help="-h"
+help1="-h"
 help0="--help"
 case $help0 in
 	$1 | $2 | $3 | $4 | $5 )
@@ -25,7 +25,7 @@ case $help0 in
 	echo
 	;;
 esac
-case $help in
+case $help1 in
 	$1 | $2 | $3 | $4 | $5 )
 	__fuckedhelp__;
 	exit 1;;
@@ -34,6 +34,62 @@ case $help in
 	echo
 	;;
 esac
+output="-o"
+out="--output"
+case $output in
+	$2)
+		new_file=$2
+		;;
+	$3) 
+		new_file=$3
+		;;
+	$4)
+		new_file=$1
+		;;
+	$5) 
+		new_file=$5
+		;;
+	$6)
+		new_file=$6
+		;;
+	$7)
+		new_file=$7
+		;;
+	$8)
+		new_file=$8
+		;;
+	*)
+		new_file=${1%.*}
+	;;
+esac
+
+case $out in
+	$2)
+		new_file=$2
+		;;
+	$3) 
+		new_file=$3
+		;;
+	$4)
+		new_file=$1
+		;;
+	$5) 
+		new_file=$5
+		;;
+	$6)
+		new_file=$6
+		;;
+	$7)
+		new_file=$7
+		;;
+	$8)
+		new_file=$8
+		;;
+	*)
+		new_file=${1%.*}
+	;;
+esac
+
 page_=""
 afs="-p"
 afs0="--page"
@@ -114,7 +170,7 @@ else
 	fi
 
 fi
-new_file=${1%.*}
+
 if [ -f "$new_file.jpg" ]; then
 	new_file="$new_file(1).jpg"
 else
@@ -124,7 +180,7 @@ fi
 afs0="--txt"
 case $afs0 in
 	$2 | $3 | $4 | $5 | $6 | $7)
-	gs -dBATCH -dNOPAUSE -dFirstPage=$(($page_)) -dLastPage=$(($page_)) -sDEVICE=txtwrite -sOutputFile=new_file.txt $1	
+	gs -dBATCH -dNOPAUSE -dFirstPage=$(($one_page)) -dLastPage=$(($page_)) -sDEVICE=txtwrite -sOutputFile=new_file.txt $1	
 	;;
 	*)
 	gs -dBATCH -dNOPAUSE -dFirstPage=$(($page_)) -dLastPage=$(($page_)) -sDEVICE=jpeg -sOutputFile=$new_file $1
